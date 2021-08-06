@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  mongodb_pinmanager:
+    build: mongodb/
+    image: pinmanager-mongodb-img
+    container_name: pinmanager-mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - net
+
+  tomcat_pinmanager:
+    depends_on:
+      - mongodb_pinmanager
+    build: tomcat/
+    image: pinmanager-tomcat-img
+    container_name: pinmanager-tomcat
+    env_file:
+      - tomcat/env/properties.env
+    ports:
+      - 8080:8080
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
