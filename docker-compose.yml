@@ -11,20 +11,9 @@ services:
     networks:
       - net
 
-  nginx_pinmanager:
-    depends_on:
-      - mongodb_pinmanager
-    build: nginx/
-    image: pinmanager-nginx-img
-    container_name: pinmanager-nginx
-    ports:
-      - 80:80
-    networks:
-      - net
-
   tomcat_pinmanager-1:
     depends_on:
-      - nginx_pinmanager
+      - mongodb_pinmanager
     build: tomcat/
     image: pinmanager-tomcat-img
     container_name: pinmanager-tomcat-1
@@ -37,7 +26,7 @@ services:
 
   tomcat_pinmanager-2:
     depends_on:
-      - nginx_pinmanager
+      - mongodb_pinmanager
     build: tomcat/
     image: pinmanager-tomcat-img
     container_name: pinmanager-tomcat-2
@@ -47,6 +36,19 @@ services:
       - 8082:8080
     networks:
       - net
+
+  nginx_pinmanager:
+    depends_on:
+      - tomcat_pinmanager-1
+      - tomcat_pinmanager-2
+    build: nginx/
+    image: pinmanager-nginx-img
+    container_name: pinmanager-nginx
+    ports:
+      - 80:80
+    networks:
+      - net
+
 
 networks:
   net:

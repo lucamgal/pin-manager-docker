@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "bc0840f5-e9da-4bdf-addf-7777d43adc83",
+		"name": "PIN-MANAGER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST pin-manager/pincodes/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"luca\",\n    \"phoneNumber\": \"3334445556\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:80/pin-manager/pincodes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"pin-manager",
+						"pincodes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT pin-manager/pincodes/{id}/status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"luca\",\n    \"pinCode\": \"214682\",\n    \"phoneNumber\": \"3334445556\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:80/pin-manager/pincodes/61111b2bcc82b741a3cabfca/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"pin-manager",
+						"pincodes",
+						"61111b2bcc82b741a3cabfca",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
