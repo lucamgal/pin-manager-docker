@@ -14,11 +14,11 @@ function download_and_build_war {
 
 	mkdir tmp
 
-	git clone git@github.com:lucamgal/pin-manager.git ./tmp
+	git clone git@github.com:lucamgal/pin-manager-micro.git ./tmp
 
 	cd tmp && chmod +x mvnw && ./mvnw clean package
 
-	cd .. && mv ./tmp/target/*.war ./tomcat/dist/pin-manager.war
+	cd .. && mv ./tmp/pin-manager-rest/target/*.war ./tomcat/dist/pin-manager.war
 }
 
 

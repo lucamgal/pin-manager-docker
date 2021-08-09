@@ -11,16 +11,40 @@ services:
     networks:
       - net
 
-  tomcat_pinmanager:
+  nginx_pinmanager:
     depends_on:
       - mongodb_pinmanager
+    build: nginx/
+    image: pinmanager-nginx-img
+    container_name: pinmanager-nginx
+    ports:
+      - 80:80
+    networks:
+      - net
+
+  tomcat_pinmanager-1:
+    depends_on:
+      - nginx_pinmanager
     build: tomcat/
     image: pinmanager-tomcat-img
-    container_name: pinmanager-tomcat
+    container_name: pinmanager-tomcat-1
     env_file:
       - tomcat/env/properties.env
     ports:
-      - 8080:8080
+      - 8081:8080
+    networks:
+      - net
+
+  tomcat_pinmanager-2:
+    depends_on:
+      - nginx_pinmanager
+    build: tomcat/
+    image: pinmanager-tomcat-img
+    container_name: pinmanager-tomcat-2
+    env_file:
+      - tomcat/env/properties.env
+    ports:
+      - 8082:8080
     networks:
       - net
 
