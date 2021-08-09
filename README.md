@@ -4,5 +4,5 @@
 Build and run containers using:
 
 ```
-buid_and_run.sh
+build_and_run.sh
 ```
